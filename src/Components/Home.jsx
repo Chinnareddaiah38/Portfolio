@@ -1,4 +1,4 @@
-import myPhoto from "../assets/myphoto.jpg";
+import myPhoto from "../assets/myPhoto.jpg";
 import resume from "../assets/Chinnareddiah_Chagalamarri_Resume.pdf";
 
 export default function Home() {

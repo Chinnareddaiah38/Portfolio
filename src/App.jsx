@@ -3,6 +3,7 @@ import Home from "./Components/Home";
 import About from "./Components/About";
 import Certificates from "./Components/Certificates";
 import Contact from "./Components/Contact";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function App() {
   return (
