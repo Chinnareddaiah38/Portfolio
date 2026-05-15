@@ -6,45 +6,40 @@ import swarna from "../assets/swarna.jpg";
 
 export default function Certificates() {
   return (
-    <div style={styles.box}>
-      <h1 style={styles.title}>Certificates</h1>
+    <div className="min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 px-3 sm:px-4 md:px-8 lg:px-16 xl:px-32 bg-gradient-radial from-slate-700 to-slate-900 text-white">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 text-center">
+          Certificates
+        </h1>
 
-      <div style={styles.grid}>
-        <img src={cloud} alt="Cloud Computing Certificate" style={styles.img} />
-        <img src={cvip} alt="CVIP Certificate" style={styles.img} />
-        <img src={quantum} alt="Quantum Fundamentals Certificate" style={styles.img} />
-        <img src={fullstack} alt="Full Stack Java Certificate" style={styles.img} />
-        <img src={swarna} alt="Swarna Certificate" style={styles.img} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8 md:gap-12 justify-items-center">
+          <img
+            src={cloud}
+            alt="Cloud Computing Certificate"
+            className="w-full max-w-sm h-auto rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"
+          />
+          <img
+            src={cvip}
+            alt="CVIP Certificate"
+            className="w-full max-w-sm h-auto rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"
+          />
+          <img
+            src={quantum}
+            alt="Quantum Fundamentals Certificate"
+            className="w-full max-w-sm h-auto rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"
+          />
+          <img
+            src={fullstack}
+            alt="Full Stack Java Certificate"
+            className="w-full max-w-sm h-auto rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"
+          />
+          <img
+            src={swarna}
+            alt="Swarna Certificate"
+            className="w-full max-w-sm h-auto rounded-lg shadow-2xl hover:scale-105 transition-transform duration-300"
+          />
+        </div>
       </div>
     </div>
   );
 }
-
-const styles = {
-  box: {
-    minHeight: "100vh",
-    padding: "100px 140px",
-    background: "radial-gradient(circle at top, #1e293b, #020617)",
-    color: "white",
-  },
-
-  title: {
-    fontSize: "44px",
-    marginBottom: "50px",
-  },
-
-  grid: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    gap: "60px",
-    flexWrap: "wrap",
-  },
-
-  img: {
-    width: "380px",
-    borderRadius: "14px",
-    boxShadow: "0 20px 40px rgba(0,0,0,0.6)",
-    transition: "transform 0.3s ease",
-  },
-};
