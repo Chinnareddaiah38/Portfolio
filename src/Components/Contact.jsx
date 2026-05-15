@@ -7,99 +7,181 @@ export default function Contact() {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm(
-      "service_rkyh5ed",        // Service ID
-      "template_4t78qe4",       // Template ID
-      form.current,
-      "N9DgRGIOqHBbaV36n"       // Public Key
-    )
-    .then(() => {
-      alert("Message sent successfully!");
-      form.current.reset();
-    })
-    .catch(() => {
-      alert("Failed to send message");
-    });
+    emailjs
+      .sendForm(
+        "service_rkyh5ed",
+        "template_4t78qe4",
+        form.current,
+        "N9DgRGIOqHBbaV36n"
+      )
+      .then(() => {
+        alert("Message sent successfully!");
+        form.current.reset();
+      })
+      .catch(() => {
+        alert("Failed to send message");
+      });
   };
 
   return (
-    <div className="min-h-screen pt-20 sm:pt-24 pb-12 sm:pb-16 px-3 sm:px-4 md:px-8 lg:px-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white">
-      <div className="max-w-6xl mx-auto">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-8 sm:mb-12 md:mb-16 text-center">
-          Get In Touch
-        </h1>
+    <div className="contact-page">
+      <h1 className="contact-heading">Get In Touch</h1>
 
-        <div className="flex flex-col lg:flex-row justify-center items-start gap-6 sm:gap-8 lg:gap-12">
+      <div className="contact-container">
+        {/* CONTACT DETAILS */}
+        <div className="contact-card">
+          <h2 className="contact-subtitle">Contact Details</h2>
 
-          {/* LEFT SIDE */}
-          <div className="w-full max-w-md p-6 md:p-8 bg-white/5 rounded-xl shadow-2xl backdrop-blur-sm">
-            <h2 className="text-xl md:text-2xl font-semibold mb-4 text-blue-400">
-              Contact Details
-            </h2>
+          <p>
+            📞{" "}
+            <a href="tel:+918328155474" className="contact-link">
+              +91 83281 55474
+            </a>
+          </p>
 
-            <p className="mb-3">
-              📞 <a href="tel:8328155474" className="text-blue-300 hover:text-blue-200 transition-colors">
-                8328155474
-              </a>
-            </p>
-
-            <p className="mb-4">
-              📧 <a
-                href="mailto:chinnareddaiah.chagalamarri@gmail.com"
-                className="text-blue-300 hover:text-blue-200 transition-colors break-all"
-              >
-                chinnareddaiah.chagalamarri@gmail.com
-              </a>
-            </p>
-
-            <p className="text-sm opacity-80 leading-relaxed">
-              Feel free to contact me for job opportunities, collaborations, or technical discussions.
-            </p>
-          </div>
-
-          {/* RIGHT SIDE FORM */}
-          <form
-            ref={form}
-            onSubmit={sendEmail}
-            className="w-full max-w-md p-6 md:p-8 bg-white/8 rounded-xl shadow-2xl backdrop-blur-sm flex flex-col gap-4"
-          >
-            <h2 className="text-xl md:text-2xl font-semibold mb-2 text-blue-400">
-              Send a Message
-            </h2>
-
-            <input
-              type="text"
-              name="from_name"
-              placeholder="Your Name"
-              required
-              className="px-4 py-3 rounded-lg border-none outline-none bg-white/10 placeholder-gray-300 text-white focus:bg-white/20 transition-colors"
-            />
-
-            <input
-              type="tel"
-              name="mobile"
-              placeholder="Mobile Number"
-              required
-              className="px-4 py-3 rounded-lg border-none outline-none bg-white/10 placeholder-gray-300 text-white focus:bg-white/20 transition-colors"
-            />
-
-            <textarea
-              name="message"
-              placeholder="Write your message or query"
-              rows="4"
-              required
-              className="px-4 py-3 rounded-lg border-none outline-none bg-white/10 placeholder-gray-300 text-white focus:bg-white/20 transition-colors resize-none"
-            ></textarea>
-
-            <button
-              type="submit"
-              className="px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105"
+          <p>
+            📧{" "}
+            <a
+              href="mailto:chinnareddaiah.chagalamarri@gmail.com"
+              className="contact-link"
             >
-              Submit
-            </button>
-          </form>
+              chinnareddaiah.chagalamarri@gmail.com
+            </a>
+          </p>
+
+          <p className="contact-note">
+            Feel free to contact me for job opportunities, collaborations, or
+            technical discussions.
+          </p>
         </div>
+
+        {/* SEND MESSAGE */}
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className="contact-card"
+        >
+          <h2 className="contact-subtitle">Send a Message</h2>
+
+          <input
+            type="text"
+            name="from_name"
+            placeholder="Your Name"
+            required
+          />
+
+          <input
+            type="tel"
+            name="mobile"
+            placeholder="Mobile Number"
+            required
+          />
+
+          <textarea
+            name="message"
+            placeholder="Write your message"
+            rows="4"
+            required
+          ></textarea>
+
+          <button type="submit">Submit</button>
+        </form>
       </div>
+
+      {/* ===== CSS ===== */}
+      <style>{`
+        .contact-page {
+          min-height: 100vh;
+          padding: 90px 20px;
+          background: linear-gradient(135deg, #020617, #0f172a);
+          color: white;
+          box-sizing: border-box;
+        }
+
+        .contact-heading {
+          text-align: center;
+          font-size: 40px;
+          margin-bottom: 50px;
+        }
+
+        /* DESKTOP */
+        .contact-container {
+          display: flex;
+          justify-content: center;
+          align-items: stretch;
+          gap: 40px;
+        }
+
+        .contact-card {
+          width: 430px;
+          padding: 28px;
+          background: rgba(255, 255, 255, 0.08);
+          border-radius: 16px;
+          box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+          box-sizing: border-box;
+        }
+
+        .contact-subtitle {
+          color: #60a5fa;
+          margin-bottom: 18px;
+        }
+
+        input,
+        textarea {
+          width: 100%;
+          padding: 12px;
+          border-radius: 8px;
+          border: none;
+          outline: none;
+          margin-bottom: 12px;
+          font-size: 15px;
+        }
+
+        textarea {
+          resize: none;
+        }
+
+        button {
+          width: 100%;
+          padding: 12px;
+          border-radius: 22px;
+          border: none;
+          background: #3b82f6;
+          color: white;
+          font-weight: bold;
+          font-size: 15px;
+          cursor: pointer;
+        }
+
+        .contact-link {
+          color: #93c5fd;
+          text-decoration: none;
+        }
+
+        .contact-note {
+          margin-top: 18px;
+          font-size: 14px;
+          opacity: 0.85;
+          line-height: 1.5;
+        }
+
+        /* MOBILE ONLY */
+        @media (max-width: 768px) {
+          .contact-heading {
+            font-size: 28px;
+          }
+
+          .contact-container {
+            flex-direction: column;
+            align-items: center;
+          }
+
+          .contact-card {
+            width: 100%;
+            max-width: 520px;
+          }
+        }
+      `}</style>
     </div>
   );
 }

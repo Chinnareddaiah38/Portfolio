@@ -1,29 +1,34 @@
+import { useState, useEffect } from "react";
 import myPhoto from "../assets/myPhoto.jpg";
 import resume from "../assets/Chinnareddiah_Chagalamarri_Resume.pdf";
 
 export default function Home() {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  // ✅ Listen to resize
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  const isMobile = width <= 768;
+  const isTablet = width > 768 && width <= 1024;
+
   return (
-    <div className="min-h-screen pt-[70px] md:pt-[75px] flex flex-col md:flex-row items-center justify-center bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 px-4 sm:px-6 md:px-8 lg:px-16 pb-8">
-      {/* LEFT SIDE IMAGE */}
-      <div className="flex-1 flex justify-center mb-6 sm:mb-8 md:mb-0 order-2 md:order-1">
-        <img
-          src={myPhoto}
-          alt="Profile"
-          className="w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 xl:w-96 xl:h-96 rounded-full object-cover border-4 border-blue-500 shadow-2xl"
-        />
+    <div style={styles.home(isMobile)}>
+      {/* IMAGE */}
+      <div style={styles.left}>
+        <img src={myPhoto} alt="Profile" style={styles.img(isMobile)} />
       </div>
 
-      {/* RIGHT SIDE CONTENT */}
-      <div className="flex-1 max-w-lg md:max-w-xl lg:max-w-2xl text-white text-center md:text-left order-1 md:order-2 md:ml-8 lg:ml-16 xl:ml-24">
-        <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 leading-tight">
-          Hi, I'm Chinnareddaiah
-        </h1>
+      {/* CONTENT */}
+      <div style={styles.right(isMobile, isTablet)}>
+        <h1 style={styles.title(isMobile)}>Hi, I'm Chinnareddiah</h1>
 
-        <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl text-blue-400 mb-4 sm:mb-6 font-semibold">
-          Java Developer
-        </h3>
+        <h3 style={styles.subTitle}>Java Developer</h3>
 
-        <p className="text-sm sm:text-base md:text-base lg:text-lg opacity-90 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto md:mx-0">
+        <p style={styles.text}>
           I am a passionate Core Java developer with strong knowledge of
           Object-Oriented Programming, Collections, Multithreading, and SQL.
           I enjoy building real-world applications, writing clean and efficient
@@ -31,15 +36,77 @@ export default function Home() {
           skills.
         </p>
 
-        {/* RESUME BUTTON */}
-        <a
-          href={resume}
-          download
-          className="inline-block px-4 sm:px-6 md:px-8 py-2 sm:py-3 bg-blue-500 hover:bg-blue-600 text-white font-bold rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 text-sm sm:text-base"
-        >
+        <a href={resume} download style={styles.resumeBtn}>
           📄 Download Resume
         </a>
       </div>
     </div>
   );
 }
+
+const styles = {
+  home: (isMobile) => ({
+    minHeight: "100vh",
+    paddingTop: "75px", // matches navbar height
+    display: "flex",
+    flexDirection: isMobile ? "column" : "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    gap: isMobile ? "40px" : "0",
+    background:
+      "linear-gradient(-45deg, #0f172a, #1e3a8a, #111827)",
+  }),
+
+  left: {
+    flex: 1,
+    display: "flex",
+    justifyContent: "center",
+  },
+
+  right: (isMobile, isTablet) => ({
+    flex: 1,
+    maxWidth: "520px",
+    marginLeft: isMobile ? "0" : isTablet ? "40px" : "90px",
+    marginRight: isMobile ? "0" : isTablet ? "40px" : "120px",
+    padding: isMobile ? "0 20px" : "0",
+    color: "white",
+    lineHeight: "1.9",
+    textAlign: isMobile ? "center" : "left",
+  }),
+
+  img: (isMobile) => ({
+    width: isMobile ? "220px" : "330px",
+    height: isMobile ? "220px" : "330px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    border: "5px solid #3b82f6",
+  }),
+
+  title: (isMobile) => ({
+    fontSize: isMobile ? "32px" : "48px",
+    marginBottom: "12px",
+  }),
+
+  subTitle: {
+    fontSize: "22px",
+    color: "#3b82f6",
+    marginBottom: "22px",
+  },
+
+  text: {
+    fontSize: "16px",
+    opacity: 0.92,
+    marginBottom: "30px",
+  },
+
+  resumeBtn: {
+    display: "inline-block",
+    padding: "12px 26px",
+    borderRadius: "30px",
+    backgroundColor: "#3b82f6",
+    color: "white",
+    textDecoration: "none",
+    fontWeight: "bold",
+    transition: "0.3s",
+  },
+};
